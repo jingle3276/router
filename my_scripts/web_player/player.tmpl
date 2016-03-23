@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <!-- <script src="audio.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+    <script src="javascript/jquery.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>  
+    <script></script>
+    #for $f in $files:
+    <h2 data-toggle="collapse" href="#$f[0]" aria-expanded="false" aria-controls="$f[0]">
+        $f[0]
+    </h2>
+    
+    <div class="collapse" id="$f[0]">
+
+        #for $file in $f[1]
+            <div class="list-group-item col-md-12 card card-block">
+                <a class="list-group-item-heading text-primary"
+                    href="$file.get('path')">
+                    $file.get('name')
+                </a>
+                <div>
+                    <audio controls preload="none" class="list-group-item-text" style="
+                      width: 350px;
+                    ">
+                        <source src="$file.get('path')" type="audio/mpeg" controls>
+                    </audio>
+                </div>
+            </div>
+        #end for
+    </div>
+    #end for
+</body>
+
+</html>
