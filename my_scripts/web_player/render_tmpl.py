@@ -15,11 +15,11 @@ def sorted_dirs(path):
     return sorted(only_dirs, reverse=True)
 
 
-def _get_files():
+def _get_files(src_dir):
     out = []
-    for d in sorted_dirs(SRC_DIR):
+    for d in sorted_dirs(src_dir):
         files = []
-        for f in os.listdir(SRC_DIR + d):
+        for f in os.listdir(src_dir + d):
             if f.endswith(".mp3"):
                 public_path = os.path.join(OUT_DIR, d, f) 
                 f_dict = {
@@ -35,7 +35,7 @@ def _get_files():
 
 def main():
     name_space = {
-        'files': _get_files()[:7]
+        'files': _get_files(SRC_DIR)[:7]
     }
     temp = Template(file=TEMP_FILE, searchList=[name_space]) 
     write_to_file(str(temp))
